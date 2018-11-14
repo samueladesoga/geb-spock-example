@@ -32,3 +32,4 @@ environments {
 
 baseUrl = "http://staging-yangah.herokuapp.com"
 reportsDir = 'target/geb-reports'
+driver = "chrome"
