@@ -17,6 +17,8 @@ environments {
 	// run via “./gradlew chromeTest”
 	// See: http://code.google.com/p/selenium/wiki/ChromeDriver
 	chrome {
+        def chromeDriver = new File('/Users/samueladesoga/projects/personal/chromedriver/chromedriver') // add .exe for Windows...
+        System.setProperty('webdriver.chrome.driver', chromeDriver.absolutePath)
 		driver = { new ChromeDriver() }
 	}
 	

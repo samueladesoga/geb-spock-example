@@ -6,6 +6,7 @@ ext {
 
     ext {
         groovyVersion = '2.4.12'
+        httpBuilderVersion = '0.7'
         gebVersion = '2.2'
         gebVersion = '2.2'
         seleniumVersion = '3.6.0'
@@ -28,6 +29,7 @@ dependencies {
         exclude group: "org.codehaus.groovy"
     }
     testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    testCompile "org.codehaus.groovy.modules.http-builder:http-builder:$httpBuilderVersion"
 
     // If using JUnit, need to depend on geb-junit (3 or 4)
     testCompile "org.gebish:geb-junit4:$gebVersion"
