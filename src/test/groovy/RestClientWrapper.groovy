@@ -1,3 +1,4 @@
+import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 
 class RestClientWrapper {
@@ -7,17 +8,21 @@ class RestClientWrapper {
         httpBuilder = new HTTPBuilder(url)
     }
 
-    def get(path, contentType){
-        def resp = httpBuilder.get(path: path, contentType)
+    def setHeaders(headerString){
+        httpBuilder.setHeaders(Accept: headerString)
+    }
+
+    def get(path){
+        def resp = httpBuilder.get(path: path)
         resp
     }
 
-    def post(path, body, requestContentType){
+    def post(path, body){
         def resp = httpBuilder.post(
-                //[ status: msg, source: 'httpbuilder' ]
                 path: path,
                 body: body,
-                requestContentType: requestContentType )
+                requestContentType: ContentType.JSON
+        )
         resp
     }
 

@@ -32,6 +32,6 @@ environments {
 
 // To run the tests with all browsers just run “./gradlew test”
 
-baseUrl = "http://staging-yangah.herokuapp.com"
+baseUrl = "https://staging-yangah.herokuapp.com"
 reportsDir = 'target/geb-reports'
 driver = "chrome"
