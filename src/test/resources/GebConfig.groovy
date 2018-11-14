@@ -7,7 +7,6 @@
 
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.phantomjs.PhantomJSDriver
 
 waiting {
 	timeout = 2
@@ -27,12 +26,9 @@ environments {
 		driver = { new FirefoxDriver() }
 	}
 
-    phantomJs {
-        driver = { new PhantomJSDriver() }
-    }
-
 }
 
 // To run the tests with all browsers just run “./gradlew test”
 
-baseUrl = "http://yangah.com"
+baseUrl = "http://staging-yangah.herokuapp.com"
+reportsDir = 'target/geb-reports'
