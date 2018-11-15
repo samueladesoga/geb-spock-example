@@ -6,6 +6,7 @@ class YangahHomePage extends Page {
     static url = '/'
 
     static content = {
-        designModule {module DesignModule}
+        navigationModule { module NavigationModule}
+        designModule { module DesignModule }
     }
 }
