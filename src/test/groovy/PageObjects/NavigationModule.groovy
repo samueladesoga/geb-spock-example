@@ -1,3 +1,5 @@
+package PageObjects
+
 import geb.Module
 
 class NavigationModule extends Module{

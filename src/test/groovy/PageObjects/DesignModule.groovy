@@ -1,3 +1,5 @@
+package PageObjects
+
 import geb.Module
 
 class DesignModule extends Module {

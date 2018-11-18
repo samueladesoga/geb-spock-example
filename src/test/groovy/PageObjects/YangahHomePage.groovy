@@ -1,3 +1,5 @@
+package PageObjects
+
 import geb.Page
 
 class YangahHomePage extends Page {

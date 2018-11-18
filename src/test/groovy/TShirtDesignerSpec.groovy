@@ -1,3 +1,4 @@
+import PageObjects.RestClientWrapper
 import geb.spock.GebReportingSpec
 import groovy.json.JsonSlurper
 

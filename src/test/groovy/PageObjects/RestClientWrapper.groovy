@@ -1,3 +1,5 @@
+package PageObjects
+
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 

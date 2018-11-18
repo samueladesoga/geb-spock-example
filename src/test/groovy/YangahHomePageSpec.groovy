@@ -1,39 +1,54 @@
-import geb.Browser
+import PageObjects.ProductIndexPage
+import PageObjects.GraphicIndexPage
+import PageObjects.TShirtDesignerPage
+import PageObjects.YangahHomePage
 import geb.spock.GebReportingSpec
 
 class YangahHomePageSpec extends GebReportingSpec {
 
-    def "A user should be able to send a message to Yangah Admin for interest as a designer"(){
+    def "A user should be able to design their TShirt by clicking on a Product Image"(){
         given: "A user is on the yangah home page"
         to YangahHomePage
 
-        when: "the user clicks any image displayed"
+        when: "user navigates to the Product Index Page"
         at YangahHomePage
-        navigationModule.linkFor('SUBMIT YOUR DESIGNS').click()
+        navigationModule.linkFor('PRODUCTS').click()
 
-        then: "the user should be on the submit your graphics page"
-        Browser.drive {
-            //assert title == "Geb - Very Groovy Browser Automation"
-            //$("#sidebar .sidemenu a", text: "jQuery-like API").click()
-            assert $("h2").first().text() == "SUBMIT YOUR GRAPHIC DESIGNS - NEXT STEPS .."
-            //assert $("#sidebar .sidemenu a", text: "jQuery-like API").parent().hasClass("selected")
-        }
+        and: "the user clicks on the first Product Image"
+        at ProductIndexPage
+        def toBeClicked = products.first()
+        def img = toBeClicked.parent().parent().parent().parent().find('img')
+        def match = (img.@src =~ /https:\/\/\w+.cloudfront.net\/product\/(\d+)\/front_image\/.+/)
+        match.find()
+        def productId = match.group(1)
+        toBeClicked.click()
+
+        then: "the product should be displayed in the TShirt Designer Page"
+        at TShirtDesignerPage
+        //productDesignMatcher = /https:\/\/\w+.cloudfront.net\/product\/${productId}\/front_image\/medium.+/
+        assert productWithId(31).isPresent
+
+
     }
 
-    def "An image should be added to the TShirt Designer when it is clicked from the home page"(){
+    def "A user should be able to design their TShirt by click on a Graphic Image"(){
         given: "A user is on the yangah home page"
         to YangahHomePage
 
-        when: "the user clicks any image displayed"
+        when: "the user navigates on the Graphic Index Page"
         at YangahHomePage
-        designModule.linkFor('King').click()
+        navigationModule.linkFor('GRAPHICS').click()
+
+        and: "the user clicks on the first Graphic"
+        at GraphicIndexPage
+        graphics.first().click()
 
         then: "the image should be loaded in the TShirt Designer"
         at TShirtDesignerPage
         waitFor(10) {graphicWithUrl('follow_me_laugh').present}
     }
 
-    def "An image should be added to the TShirt Designer when it is clicked from the home page - failing test"(){
+    def "A register should be able to register successfully providing the necessary parameters"(){
         given: "A user is on the yangah home page"
         to YangahHomePage
 
